@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("maven-publish")
 }
 
 android {
@@ -44,4 +45,17 @@ dependencies {
     implementation(libs.compose.foundation)
     implementation(libs.compose.material3)
 
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            val pubComponent = components.find { it.name == "java" || it.name == "release" }
+            from(pubComponent)
+
+            groupId = group.toString()
+            artifactId = project.name
+            version = version.toString()
+        }
+    }
 }
