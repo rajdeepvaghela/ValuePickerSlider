@@ -1,11 +1,9 @@
-# MotionText
+# ValuePickerSlider
 [![Release](https://jitpack.io/v/com.github.rajdeepvaghela/ValuePickerSlider.svg)](https://jitpack.io/#com.github.rajdeepvaghela/ValuePickerSlider)
 [![Release](https://img.shields.io/github/v/release/rajdeepvaghela/ValuePickerSlider)](https://github.com/rajdeepvaghela/ValuePickerSlider/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-
-If you use a simple TextView in MotionLayout for textSize transitions, the animation won't be smooth. Here MotionText will solve the issue, as internally 
-it will convert text to Image and during transition only the image is resized. It also have a few out of the box design attributes.
+It is a Horizontal slider value picker, which can be customized heavily to pick the desired number. Build fully in Jetpack Compose.
 
 <div align="center">
     <img src="https://github.com/rajdeepvaghela/ValuePickerSlider/assets/17750025/790ba284-5a12-428d-80b3-23780ed098f5" />
