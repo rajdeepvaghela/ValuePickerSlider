@@ -8,7 +8,7 @@ If you use a simple TextView in MotionLayout for textSize transitions, the anima
 it will convert text to Image and during transition only the image is resized. It also have a few out of the box design attributes.
 
 <div align="center">
-![image](https://github.com/rajdeepvaghela/ValuePickerSlider/assets/17750025/790ba284-5a12-428d-80b3-23780ed098f5)
+    <img src="https://github.com/rajdeepvaghela/ValuePickerSlider/assets/17750025/790ba284-5a12-428d-80b3-23780ed098f5" />
 </div>
 
 ## Installation
