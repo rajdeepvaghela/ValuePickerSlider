@@ -50,8 +50,8 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-//            val pubComponent = components.find { it.name == "java" || it.name == "release" }
-//            from(pubComponent)
+            val pubComponent = components.find { it.name == "java" || it.name == "release" || it.name == "kotlin" }
+            from(pubComponent)
 
             groupId = "com.rdapps.valuepickerslider"
             artifactId = "ValuePickerSlider"
