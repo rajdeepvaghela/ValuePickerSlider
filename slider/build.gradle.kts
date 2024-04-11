@@ -55,7 +55,7 @@ publishing {
 
             groupId = "com.rdapps.valuepickerslider"
             artifactId = "ValuePickerSlider"
-            version = "1.0.4"
+            version = "1.0.5"
         }
     }
 }
