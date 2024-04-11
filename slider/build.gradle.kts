@@ -56,18 +56,13 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("release") {
-            val pubComponent = components.find {
-                it.name == "java" || it.name == "release" || it.name == "kotlin"
-            }
-            from(pubComponent)
-
             groupId = "com.rdapps.valuepickerslider"
             artifactId = "ValuePickerSlider"
             version = "1.0.5"
 
-//            afterEvaluate {
-//                from(components.find { it.name == "release" })
-//            }
+            afterEvaluate {
+                from(components["release"])
+            }
         }
     }
 }
