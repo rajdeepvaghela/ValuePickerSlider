@@ -23,7 +23,7 @@ dependencyResolutionManagement {
 Add the dependency
 ```gradle
 dependencies {
-    implementation 'com.github.rajdeepvaghela:ValuePickerSlider:1.0.0'
+    implementation 'com.github.rajdeepvaghela:ValuePickerSlider:1.0.7'
 }
 ```
 ## Usage
