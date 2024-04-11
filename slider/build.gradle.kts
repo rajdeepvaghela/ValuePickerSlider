@@ -1,11 +1,13 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
-//    id("maven-publish")
+    id("maven-publish")
 }
 
+val group = "com.rdapps.valuepickerslider"
+
 android {
-    namespace = "com.rdapps.valuepickerslider"
+    namespace = group
     compileSdk = 34
 
     defaultConfig {
@@ -47,16 +49,16 @@ dependencies {
 
 }
 
-//publishing {
-//    publications {
-//        create<MavenPublication>("release") {
-//            groupId = "com.rdapps.valuepickerslider"
-//            artifactId = "ValuePickerSlider"
-//            version = "1.0.5"
-//
-//            afterEvaluate {
-//                from(components["release"])
-//            }
-//        }
-//    }
-//}
+publishing {
+    publications {
+        create<MavenPublication>("release") {
+            groupId = group
+            artifactId = project.name
+            version = "1.0.7"
+
+            afterEvaluate {
+                from(components["release"])
+            }
+        }
+    }
+}
