@@ -59,6 +59,11 @@ android {
             )
         }
     }
+
+    publishing {
+        singleVariant("release")
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -68,10 +73,14 @@ android {
 
 publishing {
     publications {
-        withType<MavenPublication> {
+        register<MavenPublication>("release") {
             groupId = libGroup
-            artifactId = if (name == "kotlinMultiplatform") project.name else "${project.name}-$name"
-            version = "2.0.0"
+            artifactId = project.name
+            version = "1.0.8"
+
+            afterEvaluate {
+                from(components["release"])
+            }
         }
     }
 }
