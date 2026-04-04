@@ -1,11 +1,10 @@
 @file:OptIn(ExperimentalWasmDsl::class)
 
 import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinMultiplatformLibrary)
     alias(libs.plugins.jetbrainsCompose)
     alias(libs.plugins.composeCompiler)
     id("maven-publish")
@@ -14,13 +13,6 @@ plugins {
 val libGroup = "com.rdapps.valuepickerslider"
 
 kotlin {
-    androidTarget {
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_11)
-        }
-        publishLibraryVariants("release")
-    }
-
     jvm()
     iosX64()
     iosArm64()
@@ -38,38 +30,15 @@ kotlin {
         }
 
         commonTest.dependencies {
-
+//            implementation(kotlin.test)
         }
     }
-}
 
-android {
-    namespace = libGroup
-    compileSdk = 36
-
-    defaultConfig {
+    androidLibrary {
+        namespace = libGroup
+        compileSdk = 36
         minSdk = 21
     }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
-    publishing {
-        singleVariant("release")
-    }
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
-    }
-    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
 // Let the KMP Gradle plugin auto-generate publications for every target
