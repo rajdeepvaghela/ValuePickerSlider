@@ -71,15 +71,15 @@ android {
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = libGroup
-            artifactId = project.name
-            version = "1.0.8"
-
-            afterEvaluate {
-                from(components["release"])
+// Let the KMP Gradle plugin auto-generate publications for every target
+// (kotlinMultiplatform, jvm, androidRelease, iosX64, iosArm64, iosSimulatorArm64).
+// Then stamp them all with the correct groupId / version.
+afterEvaluate {
+    publishing {
+        publications {
+            withType<MavenPublication> {
+                groupId = libGroup
+                version = "1.0.8"
             }
         }
     }
