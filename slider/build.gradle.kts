@@ -1,4 +1,6 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+@file:OptIn(ExperimentalWasmDsl::class)
+
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -13,23 +15,19 @@ val libGroup = "com.rdapps.valuepickerslider"
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
+            jvmTarget.set(JvmTarget.JVM_11)
         }
         publishLibraryVariants("release")
     }
 
+    jvm()
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-
-    jvm {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
-        compilerOptions {
-            jvmTarget.set(JvmTarget.JVM_17)
-        }
-    }
+    linuxX64()
+    js { browser() }
+    wasmJs { browser() }
 
     sourceSets {
         commonMain.dependencies {
@@ -38,6 +36,10 @@ kotlin {
             implementation(compose.animation)
             implementation(compose.material3)
             implementation(compose.ui)
+        }
+
+        commonTest.dependencies {
+
         }
     }
 }
@@ -65,8 +67,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
