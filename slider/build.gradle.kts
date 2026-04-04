@@ -1,14 +1,50 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
+    alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.composeCompiler)
     id("maven-publish")
 }
 
-val group = "com.rdapps.valuepickerslider"
+val libGroup = "com.rdapps.valuepickerslider"
+
+kotlin {
+    androidTarget {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+        publishLibraryVariants("release")
+    }
+
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    jvm("desktop") {
+        @OptIn(ExperimentalKotlinGradlePluginApi::class)
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_17)
+        }
+    }
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.animation)
+            implementation(compose.material3)
+            implementation(compose.ui)
+        }
+    }
+}
 
 android {
-    namespace = group
-    compileSdk = 34
+    namespace = libGroup
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 21
@@ -23,42 +59,19 @@ android {
             )
         }
     }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.compiler.get()
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_17.toString()
-    }
-}
-
-dependencies {
-
-    implementation(libs.androidx.core.ktx)
-    implementation(platform(libs.compose.bom))
-    implementation(libs.compose.ui)
-    implementation(libs.compose.animation)
-    implementation(libs.compose.foundation)
-    implementation(libs.compose.material3)
-
+    sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
 }
 
 publishing {
     publications {
-        create<MavenPublication>("release") {
-            groupId = group
-            artifactId = project.name
-            version = "1.0.7"
-
-            afterEvaluate {
-                from(components["release"])
-            }
+        withType<MavenPublication> {
+            groupId = libGroup
+            artifactId = if (name == "kotlinMultiplatform") project.name else "${project.name}-$name"
+            version = "2.0.0"
         }
     }
 }
