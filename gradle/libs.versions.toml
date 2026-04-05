@@ -1,7 +1,7 @@
 [versions]
 agp = "8.9.0"
 kotlin = "2.1.20"
-compose-multiplatform = "1.8.0"
+composeMultiplatform = "1.8.0"
 coreKtx = "1.16.0"
 lifecycleRuntimeKtx = "2.9.0"
 activityCompose = "1.10.1"
@@ -19,5 +19,5 @@ kotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", 
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
-jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+composeMultiplatform = { id = "org.jetbrains.compose", version.ref = "composeMultiplatform" }
 composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }

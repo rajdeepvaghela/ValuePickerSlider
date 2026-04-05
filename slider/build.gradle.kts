@@ -5,7 +5,7 @@ import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.kotlinMultiplatformLibrary)
-    alias(libs.plugins.jetbrainsCompose)
+    alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     id("maven-publish")
 }
@@ -13,6 +13,14 @@ plugins {
 val libGroup = "com.rdapps.valuepickerslider"
 
 kotlin {
+    applyDefaultHierarchyTemplate()
+
+    androidLibrary {
+        namespace = libGroup
+        compileSdk = 36
+        minSdk = 21
+    }
+
     jvm()
     iosX64()
     iosArm64()
@@ -29,15 +37,13 @@ kotlin {
             implementation(compose.ui)
         }
 
-        commonTest.dependencies {
-//            implementation(kotlin.test)
+        jvmMain.dependencies {
+            implementation(compose.desktop.currentOs)
         }
-    }
 
-    androidLibrary {
-        namespace = libGroup
-        compileSdk = 36
-        minSdk = 21
+        commonTest.dependencies {
+            implementation(libs.kotlin.test)
+        }
     }
 }
 
