@@ -12,7 +12,7 @@ plugins {
 }
 
 val libGroup = "io.github.rajdeepvaghela.valuepickerslider"
-val libVersion = "2.0.0"
+val libVersion = "2.0.1"
 
 kotlin {
     android {
@@ -50,7 +50,7 @@ kotlin {
 mavenPublishing {
     publishToMavenCentral()
 
-//    signAllPublications()
+    signAllPublications()
 
     coordinates(libGroup, "slider", libVersion)
 
