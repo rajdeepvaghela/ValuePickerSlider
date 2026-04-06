@@ -7,18 +7,18 @@ plugins {
     alias(libs.plugins.kotlinMultiplatformLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.vanniktech.mavenPublish)
     id("maven-publish")
 }
 
-val libGroup = "com.rdapps.valuepickerslider"
+val libGroup = "io.github.rajdeepvaghela.valuepickerslider"
+val libVersion = "2.0.0"
 
 kotlin {
-    applyDefaultHierarchyTemplate()
-
-    androidLibrary {
-        namespace = libGroup
+    android {
+        namespace = "com.rdapps.valuepickerslider"
         compileSdk = 36
-        minSdk = 21
+        minSdk = 23
     }
 
     jvm()
@@ -30,11 +30,11 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.animation)
-            implementation(compose.material3)
-            implementation(compose.ui)
+            implementation(libs.compose.runtime)
+            implementation(libs.compose.foundation)
+            implementation(libs.compose.animation)
+            implementation(libs.compose.material3)
+            implementation(libs.compose.ui)
         }
 
         jvmMain.dependencies {
@@ -47,16 +47,36 @@ kotlin {
     }
 }
 
-// Let the KMP Gradle plugin auto-generate publications for every target
-// (kotlinMultiplatform, jvm, androidRelease, iosX64, iosArm64, iosSimulatorArm64).
-// Then stamp them all with the correct groupId / version.
-afterEvaluate {
-    publishing {
-        publications {
-            withType<MavenPublication> {
-                groupId = libGroup
-                version = "1.0.8"
+mavenPublishing {
+    publishToMavenCentral()
+
+//    signAllPublications()
+
+    coordinates(libGroup, "slider", libVersion)
+
+    pom {
+        name = "Value Picker Slider"
+        description = "Customisable Horizontal slider value picker built fully in Jetpack Compose"
+        inceptionYear = "2024"
+        url = "https://github.com/rajdeepvaghela/ValuePickerSlider"
+        licenses {
+            license {
+                name = "The Apache License, Version 2.0"
+                url = "https://www.apache.org/licenses/LICENSE-2.0.txt"
+                distribution = "https://www.apache.org/licenses/LICENSE-2.0.txt"
             }
+        }
+        developers {
+            developer {
+                id = "rajdeepvaghela"
+                name = "Rajdeep Vaghela"
+                url = "https://github.com/rajdeepvaghela"
+            }
+        }
+        scm {
+            url = "https://github.com/rajdeepvaghela/ValuePickerSlider"
+            connection = "scm:git:git://github.com/rajdeepvaghela/ValuePickerSlider.git"
+            developerConnection = "scm:git:git://github.com/rajdeepvaghela/ValuePickerSlider.git"
         }
     }
 }
