@@ -1,5 +1,6 @@
 # Value Picker Slider
-[![Release](https://jitpack.io/v/com.github.rajdeepvaghela/ValuePickerSlider.svg)](https://jitpack.io/#com.github.rajdeepvaghela/ValuePickerSlider)
+[![Release](https://img.shields.io/badge/Platform-ComposeMultiplatform-brightgreen.svg)](https://img.shields.io/badge/Platform-ComposeMultiplatform-brightgreen.svg)
+[![Release](https://img.shields.io/maven-central/v/io.github.rajdeepvaghela.valuepickerslider/slider)](https://img.shields.io/maven-central/v/io.github.rajdeepvaghela.valuepickerslider/slider)
 [![Release](https://img.shields.io/github/v/release/rajdeepvaghela/ValuePickerSlider)](https://github.com/rajdeepvaghela/ValuePickerSlider/releases)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
