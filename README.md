@@ -12,19 +12,15 @@ It is a Horizontal slider value picker, which can be customized heavily to pick 
 
 ## Installation
 Add it in your root build.gradle or settings.gradle at the end of repositories:
-```gradle
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-      mavenCentral()
-      maven { url 'https://jitpack.io' }
-    }
+```kts
+repositories {
+  mavenCentral()
 }
 ```
 Add the dependency
-```gradle
+```kts
 dependencies {
-    implementation 'com.github.rajdeepvaghela:ValuePickerSlider:1.0.7'
+    implementation(io.github.rajdeepvaghela.valuepickerslider:slider:2.0.1)
 }
 ```
 ## Usage
